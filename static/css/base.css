@@ -1,0 +1,28 @@
+
+/*
+ * 主页子页面主体
+ */
+.base-body{
+	position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 50px;
+    left: 0;
+}
+
+
+/*颜色*/
+.base-blue{
+	background-color: #0085ff;
+}
+
+
+
+/*组件尺寸*/
+/*
+ * 图标/图片
+ */
+.base-icon{
+	width:.15rem;
+}
+
