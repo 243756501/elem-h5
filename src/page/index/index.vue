@@ -13,21 +13,36 @@
 					<span>搜索饿了吗商家、商店名称</span>
 				</div>
 			</div>
+			<v-gridview :gridviewLength="gLength">
+				<div slot="zcx_1">
+					111
+				</div>
+				<div slot="zcx_2">
+					222
+				</div>
+				<div slot="zcx_3">
+					333
+				</div>
+			</v-gridview>		
 		</v-scroll>
+		
 	</div>
 </template>
 
 <script>
 	import Scroll from './../../components/zscroll.vue';
+	import GridView from './../../components/gridview.vue';
 
 	export default {
 		components: {
-			'v-scroll': Scroll
+			'v-scroll': Scroll,
+			'v-gridview':GridView
 		},
 		data() {
 			return {
 				listdata: [], // 下拉更新数据存放数组
-				downdata: [] // 上拉更多的数据存放数组
+				downdata: [], // 上拉更多的数据存放数组
+				gLength:3
 			}
 		},
 		mounted: function() {
