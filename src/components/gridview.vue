@@ -1,12 +1,12 @@
 <template>
 	<div class="main">
 		<div id="gridView" class="gridview">
-			<div  v-for="n in gridviewLength"  class="gridview-item" @touchstart="touchStart($event)" @touchmove="touchMove($event)" @touchend="touchEnd($event)">
-				<slot :name="n | dlt"></slot>
-			</div>			
+			<div v-for="(value,key,index) in gridviewList" class="gridview-item" @touchstart="touchStart($event)" @touchmove="touchMove($event)" @touchend="touchEnd($event)">
+				<slot :name="key | dlt"></slot>
+			</div>
 		</div>
 		<div class="gridvie-dotlist">
-			<div  v-for="n in gridviewLength"  :class="['gridvie-dot',itemIndex== (n-1) ? 'dot-active' : '' ]"></div>
+			<div v-for="(value,key,index)  in gridviewList" :class="['gridvie-dot',itemIndex== key ? 'dot-active' : '' ]"></div>
 		</div>
 	</div>
 </template>
@@ -25,17 +25,19 @@
 				obj: null,
 				objArray: null,
 				countObj: null,
-				test:null
+				test: null
 			}
 		},
 		created() {
-            
+
 		},
-		
-		props:['gridviewLength'],
-		filters:{
-			dlt:function(val){
-				return 'zcx_'+val;
+
+		props: [
+			'gridviewList'
+		],
+		filters: {
+			dlt: function(val) {
+				return 'zcx_' + val;
 			}
 		},
 		mounted: function() {
@@ -43,7 +45,7 @@
 				this.itemNum = document.getElementsByClassName('gridview-item').length;
 				this.obj = document.getElementsByClassName('gridview-item')[0];
 				this.objArray = document.getElementsByClassName('gridview-item');
-				this.$parent.m=1111;
+				this.$parent.m = 1111;
 			})
 		},
 		methods: {
@@ -103,7 +105,7 @@
 				}, 10);
 			},
 			touchStart(e) {
-		
+
 				this.startX = e.targetTouches[0].pageX;
 				this.distance = 0;
 			},
@@ -139,24 +141,24 @@
 					} else {
 						this.moveAnimation('4');
 					}
-				}			
+				}
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	.main{
+	.main {
 		position: relative;
 	}
+	
 	.gridview {
 		width: 100%;
 		white-space: nowrap;
 		overflow: hidden;
-		height: auto;
+		height: 1.5rem;
 		font-size: 0;
 		letter-spaceing: -4px;
-		background-color: #DDDDDD;
 	}
 	
 	.gridview-item {
@@ -169,15 +171,14 @@
 		padding: 0 0 .15rem 0;
 	}
 	
-	.gridvie-dotlist{
+	.gridvie-dotlist {
 		width: 100%;
-		height: .4rem;
-		line-height: .4rem;
+		height: .2rem;
+		line-height: .2rem;
 		text-align: center;
-		position: absolute;
-		bottom: 0;
 	}
-	.gridvie-dot{
+	
+	.gridvie-dot {
 		display: inline-block;
 		border-radius: 50%;
 		height: .08rem;
@@ -186,7 +187,7 @@
 		margin: 0 .05rem;
 	}
 	
-	.dot-active{
-		background-color:#ffffff !important;
+	.dot-active {
+		background-color: #333333 !important;
 	}
 </style>

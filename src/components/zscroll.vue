@@ -80,6 +80,7 @@ export default {
       } else {
         this.state = 0
       }
+
     },
     touchEnd(e) {
       if (!this.enableRefresh) return
